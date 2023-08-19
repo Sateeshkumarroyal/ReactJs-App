@@ -1,0 +1,64 @@
+/* MessagingApp.css */
+
+.messaging-app-container {
+    width: 20%;
+    margin-left: 70%;
+  }
+  
+  .conversations {
+    flex: 1;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+  }
+  
+  .conversation {
+    cursor: pointer;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .conversation.active {
+    background-color: #ddd;
+  }
+  
+  .messages {
+    flex: 2;
+    padding-left: 10px;
+  }
+  
+  .message-list {
+    overflow-y: scroll;
+    max-height: 300px;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+  }
+  
+  .sender {
+    font-weight: bold;
+  }
+  
+  .message-input {
+    margin-top: 10px;
+  }
+  
+  .message-input input[type="text"] {
+    width: 70%;
+    padding: 5px;
+  }
+  
+  .message-input button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .message-input button:hover {
+    background-color: #0056b3;
+  }
+  

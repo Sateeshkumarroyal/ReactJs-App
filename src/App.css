@@ -1,0 +1,141 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.background-image {
+  position: fixed;
+  /* Use fixed positioning to keep the background fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/Users/sateesh/Desktop/regov-enterprize/regovapplication/src/assests/image2.jpeg');
+  /* Replace with your image path */
+  background-size: cover;
+  z-index: -1;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Your existing styles... */
+
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #007bff;
+  /* Adjust the background color */
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.login-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #007bff;
+  /* Adjust the background color */
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button-Shop {
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #84b0a5;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+.forgot-password-btn {
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #ffd300;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+
+.admin-btn {
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #2f202c;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
+.custom-toast {
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+
+}
+
+
+.custom-toast-body {
+  padding: 10px;
+
+}
