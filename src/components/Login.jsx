@@ -1,46 +1,80 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-function Login({ handleLogin, activeSession, handleAccountLocked }) {
-  const [accountActivated] = useState(true);
+function Login({ handleLogin }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [errors, setErrors] = useState({});
   const [touchedFields, setTouchedFields] = useState({ email: false, password: false });
-  const maxFailedAttempts = 3;
   const [activationMethod, setActivationMethod] = useState('email'); // Default activation method
   const [isActivated, setIsActivated] = useState(false); // State to track activation status
   const [capturedFace, setCapturedFace] = useState(null);
   const [capturedCredentials, setCapturedCredentials] = useState(null);
   const [verificationStatus, setVerificationStatus] = useState('unverified');
+  const [isAccountBlocked, setIsAccountBlocked] = useState(false); // Track account blocking
 
-  // Hardcoded user data for demonstration
+  // eKyc user data 
   const hardcodedUserData = [
-    { id: 1, email: 'royalsateeshkumar@gmail.com', password: 'password123', activationCode: '123456' },
-    { id: 1, email: ' techchallenge@regovtech.com', password: 'password1234', activationCode: '123457' },
-  ];
-
-  // eKyc user data for demonstration
-  const eKYC = [
     {
       id: 1,
-      email: 'royalsateeshkumar@gmail.com',
+      email: 'royalsateeshkumar@gmail.com',         //     valid credentials
+      password: 'password123456',
+      isVerified: true,
+      faceImage: null,
+      credentialsImage: null,
+      activationCode: '123456',
+      isLoggedOnAnotherDevice: false,
+       maxFailedAttempts: 1 
+    },
+    {
+      id: 2,
+      email: 'techchallenge1@regovtech.com',        //Account not Activated --- Activation code
+      password: 'password1',
+      isVerified: true,
+      faceImage: null,
+      credentialsImage: null,
+      isLoggedOnAnotherDevice: false,
+      activationCode: null,
+      maxFailedAttempts: 1 
+    },
+    {
+      id: 3,
+      email: 'techchallenge2@regovtech.com',         //Account logged in Other device
+      password: 'password12',
+      isVerified: true,
+      faceImage: null,
+      credentialsImage: null,
+      isLoggedOnAnotherDevice: true,
+      activationCode: '12',
+      maxFailedAttempts: 1 
+    },
+    {
+      id: 3,
+      email: 'techchallenge3@regovtech.com',                 
       password: 'password123',
       isVerified: true,
       faceImage: null,
       credentialsImage: null,
+      isLoggedOnAnotherDevice: false,
+      activationCode: '123',
+      maxFailedAttempts: 3
     },
-    {
-      id: 2,
-      email: 'techchallenge@regovtech.com',
+    {  
+      id: 4,
+      email: 'techchallenge4@regovtech.com',         //ekyc not verified
       password: 'password1234',
       isVerified: false,
       faceImage: null,
       credentialsImage: null,
+      isLoggedOnAnotherDevice: false,
+      activationCode: '1234',
+      maxFailedAttempts: 1 
     }
   ];
 
@@ -73,75 +107,89 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    // Access the captured email address
+  console.log('Email:', email);
+  console.log('password:', password);
+  console.log('failed:', failedAttempts);
 
+
+    // Check if the account is already blocked
+    if (isAccountBlocked) {
+      toast.error('Account is blocked due to too many failed attempts.');
+      return;
+    }
+  
     try {
       const user = hardcodedUserData.find((userData) => userData.email === email);
-      const eKycuser = eKYC.find((userData) => userData.email === email);
+      console.log('max:', user.maxFailedAttempts);
 
-      if (!eKycuser) {
-        setErrors({ email: 'User not found' });
-        return;
-      }
-
-      if (!eKycuser.isVerified) {
-        setErrors({ email: 'Account not verified' });
-        return;
-      }
-
+  
       if (!user) {
-        setErrors({ email: 'User not found' });
+        toast.error('User not found');
         return;
       }
-
+  
+      if (!user.isVerified) {
+        toast.error('Account not verified');
+        return;
+      }
+  
+  
       if (!user.activationCode) {
-        setErrors({ email: 'Account not activated' });
+        toast.error('Account not activated');
         return;
       }
-
+  
       if (activationMethod === 'otp' && !isActivated) {
-        // If using OTP activation, check if user is activated
-        setErrors({ email: 'Account not activated with OTP' });
+        toast.error('Account not activated with OTP');
         return;
       }
-      if (accountActivated) {
-        if (activeSession) {
-          console.log('User already logged in on another device');
+  
+      if (user && user.isLoggedOnAnotherDevice) {
+        toast.error('User already logged in on another device');
+        console.log('User already logged in on another device');
+        return;
+      }
+  
+ if (user && user.password !== password) {
+        // Increment the failed login attempts
+        setFailedAttempts(failedAttempts + 1);
+
+        if (failedAttempts >= 2) {
+          // If there have been 3 or more failed attempts, block the account
+          setIsAccountBlocked(true);
+          toast.error('Account locked due to too many failed attempts.');
           return;
         }
 
-        if (failedAttempts >= maxFailedAttempts) {
-          handleAccountLocked();
-          console.log('Account locked due to too many failed attempts');
-          return;
-        }
-
-        const newErrors = {};
-
-        if (!email) {
-          newErrors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-          newErrors.email = 'Invalid email address';
-        }
-
-        if (!password) {
-          newErrors.password = 'Password is required';
-        }
-
-        setErrors(newErrors);
-
-        if (Object.keys(newErrors).length === 0) {
-          const user = { email };
-          handleLogin(user);
-          navigate('/dashboard');
-        } else {
-          setFailedAttempts(failedAttempts + 1);
-        }
+        toast.error('Incorrect password');
+        return;
+      }
+      const newErrors = {};
+  
+      if (!email) {
+        newErrors.email = 'Email is required';
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        newErrors.email = 'Invalid email address';
+      }
+  
+      if (!password) {
+        newErrors.password = 'Password is required';
+      }
+  
+      setErrors(newErrors);
+  
+      if (Object.keys(newErrors).length === 0) {
+        const user = { email };
+        handleLogin(user);
+        navigate('/dashboard');
+      } else {
+        setFailedAttempts(failedAttempts + 1);
       }
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
-
 
   return (
     <div className="login-container">
@@ -226,7 +274,12 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
       </div>
 
       <button className="btn btn-primary" onClick={handleLoginSubmit}>Login</button>
-
+      <ToastContainer
+        toastClassName="custom-toast" 
+        bodyClassName="custom-toast-body" 
+        position="top-right" 
+        autoClose={5000} // Auto-close after 5 seconds
+      />
       <div className="background-image"></div>
     </div>
   );

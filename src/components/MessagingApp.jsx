@@ -56,6 +56,7 @@ function MessagingApp() {
   return (
     <div className="messaging-app-container">
       <div className="conversations">
+        <h1>In-App Messages</h1>
         {hardcodedConversations.map((conversation) => (
           <div
             key={conversation.id}
