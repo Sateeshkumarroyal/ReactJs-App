@@ -14,7 +14,9 @@ function Login({ handleLogin }) {
   const [touchedFields, setTouchedFields] = useState({ email: false, password: false });
   const [activationMethod, setActivationMethod] = useState('email'); // Default activation method
   const [isActivated, setIsActivated] = useState(false); // State to track activation status
+  // eslint-disable-next-line
   const [capturedFace, setCapturedFace] = useState(null);
+  // eslint-disable-next-line
   const [capturedCredentials, setCapturedCredentials] = useState(null);
   const [verificationStatus, setVerificationStatus] = useState('unverified');
   const [isAccountBlocked, setIsAccountBlocked] = useState(false); // Track account blocking
@@ -67,7 +69,7 @@ function Login({ handleLogin }) {
     },
     {  
       id: 4,
-      email: 'techchallenge4@regovtech.com',         //ekyc not verified
+      email: 'techchallenge24@regovtech.com',         //ekyc not verified
       password: 'password1234',
       isVerified: false,
       faceImage: null,
@@ -115,7 +117,7 @@ function Login({ handleLogin }) {
 
     // Check if the account is already blocked
     if (isAccountBlocked) {
-      toast.error('Account is blocked due to too many failed attempts.');
+      setIsAccountBlocked(false); 
       return;
     }
   
