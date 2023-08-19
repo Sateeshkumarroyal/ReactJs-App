@@ -1,4 +1,4 @@
-/* Login.css */
+
 .login-container {
   max-width: 400px;
   margin: 0 auto;
@@ -100,3 +100,46 @@
   color: #28a745;
   font-weight: bold;
 }
+
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-container h2 {
+    font-size: 20px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+  }
+
+  .form-control {
+    padding: 8px;
+  }
+
+  .btn-primary {
+    padding: 8px 16px;
+  }
+
+  .forgot-password-btn,
+  .admin-btn,
+  .activate-btn,
+  .capture-face-btn,
+  .capture-credentials-btn,
+  .verify-btn {
+    padding: 6px 10px;
+  }
+
+  .verification-section h3 {
+    font-size: 16px;
+  }
+
+  .verification-success {
+    font-size: 16px;
+  }
+}
+
+

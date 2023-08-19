@@ -72,4 +72,23 @@ body {
     font-weight: bold;
   }
   
+  @media screen and (max-width: 768px) {
+  
+    .clothing-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .clothing-form {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .clothing-container h2 {
+        font-size: 20px;
+    }
+
+    .estimated-cost {
+        font-size: 16px;
+    }
+}
   

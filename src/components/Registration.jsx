@@ -25,7 +25,7 @@ function Registration() {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      // Validation passed, perform registration logic
+      // Validation passed
       navigate('/login')
     } else {
       setErrors(newErrors);
@@ -38,7 +38,7 @@ function Registration() {
       ...prevTouchedFields,
       [field]: true,
     }));
-    // Clear the error for the corresponding field
+
     if (field === 'email') {
       setErrors((prevErrors) => ({
         ...prevErrors,

@@ -46,4 +46,19 @@
   .touched .is-invalid {
     border-color: #dc3545;
   }
-  
+  /* Mobile styles */
+@media screen and (max-width: 768px) {
+  .registration-container {
+      width: 90%; 
+      margin: 0 auto; 
+  }
+
+  .form-control {
+      width: 100% !important; 
+  }
+
+  .btn-primary {
+      width: 100%; 
+      margin-top: 15px; 
+  }
+}

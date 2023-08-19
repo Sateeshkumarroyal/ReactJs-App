@@ -1,8 +1,6 @@
-// Dashboard.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MessagingApp from './MessagingApp'; // Import the MessagingApp component
-
+import MessagingApp from './MessagingApp';
 function Dashboard({ user, handleLogout }) {
   const navigate = useNavigate();
   const shoppingDetails = [

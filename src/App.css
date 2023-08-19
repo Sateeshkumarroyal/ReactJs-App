@@ -61,7 +61,6 @@
   font-size: 16px;
   color: #ffffff;
   background-color: #007bff;
-  /* Adjust the background color */
   border: none;
   padding: 8px 16px;
   cursor: pointer;
@@ -75,7 +74,6 @@
   font-size: 16px;
   color: #ffffff;
   background-color: #007bff;
-  /* Adjust the background color */
   border: none;
   padding: 8px 16px;
   cursor: pointer;
@@ -138,4 +136,40 @@ ul {
 .custom-toast-body {
   padding: 10px;
 
+}
+/* Add this media query for mobile devices */
+@media (max-width: 768px) {
+  .background-image {
+    background-size: contain;
+  }
+
+  .logout-button,
+  .login-button,
+  .button-Shop,
+  .forgot-password-btn,
+  .admin-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 14px; 
+    padding: 8px 16px; 
+  }
+
+  .App-logo {
+    height: 20vmin; 
+  }
+
+  .App-header {
+    min-height: 100vh;
+    font-size: calc(6px + 2vmin); 
+  }
+
+  .custom-toast {
+    font-size: 12px; 
+  }
+
+  .custom-toast-body {
+    padding: 5px; 
+  }
+
+  
 }

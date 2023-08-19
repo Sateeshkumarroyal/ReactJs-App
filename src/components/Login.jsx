@@ -16,16 +16,15 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
   const [isActivated, setIsActivated] = useState(false); // State to track activation status
   const [capturedFace, setCapturedFace] = useState(null);
   const [capturedCredentials, setCapturedCredentials] = useState(null);
-  const [verificationStatus, setVerificationStatus] = useState('unverified'); // 'unverified', 'verified', 'rejected'
+  const [verificationStatus, setVerificationStatus] = useState('unverified');
 
   // Hardcoded user data for demonstration
   const hardcodedUserData = [
     { id: 1, email: 'royalsateeshkumar@gmail.com', password: 'password123', activationCode: '123456' },
     { id: 1, email: ' techchallenge@regovtech.com', password: 'password1234', activationCode: '123457' },
-    // Add more users here
   ];
 
-  // Hardcoded user data for demonstration
+  // eKyc user data for demonstration
   const eKYC = [
     {
       id: 1,
@@ -43,7 +42,6 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
       faceImage: null,
       credentialsImage: null,
     }
-    // Add more users here
   ];
 
   const handleForgotPassword = () => {
@@ -58,7 +56,6 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
       ...prevTouchedFields,
       [field]: true,
     }));
-    // Clear the error for the corresponding field
     if (field === 'email') {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -133,7 +130,6 @@ function Login({ handleLogin, activeSession, handleAccountLocked }) {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-          // Perform login logic here
           const user = { email };
           handleLogin(user);
           navigate('/dashboard');

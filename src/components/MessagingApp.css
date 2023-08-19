@@ -62,3 +62,35 @@
     background-color: #0056b3;
   }
   
+  /* Mobile styles */
+@media screen and (max-width: 768px) {
+  .messaging-app-container {
+      width: 100%; 
+      margin-left: 0; 
+  }
+
+  .conversations {
+      flex: none; 
+      border-right: none; 
+      padding-right: 0; 
+  }
+
+  .messages {
+      flex: none; 
+      padding-left: 0; 
+  }
+
+  .message-list {
+      max-height: none; 
+  }
+
+  .message-input {
+      margin-top: 0; 
+  }
+
+  .message-input input[type="text"] {
+      width: 100%; 
+  }
+}
+
+

@@ -46,4 +46,30 @@
     background-color: #0056b3;
   }
   
-  
+  /* Mobile styles */
+@media screen and (max-width: 768px) {
+  .admin-dashboard-container {
+      max-width: 90%;
+      padding: 15px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+
+  .application-item {
+      margin-bottom: 15px;
+      padding: 10px;
+  }
+
+  .buttons {
+      flex-direction: column; 
+      margin-top: 15px;
+  }
+
+  .approve-button,
+  .reject-button {
+      width: 100%;
+      margin-bottom: 10px; 
+  }
+}
